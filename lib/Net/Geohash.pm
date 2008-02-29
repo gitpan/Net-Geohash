@@ -5,11 +5,12 @@ use warnings;
 
 use LWP::UserAgent;
 
-our $VERSION = '1.0';
+our $VERSION = '1.1';
 
 sub get {
-    my ($coords) = @_;
+    my ($coords) = shift @_;
     if (! $coords) { warn 'Missing lattitude/longitude param'; return ''; }
+    if (@_) { warn 'Extra parameters found.'; return; }
     my $ua = LWP::UserAgent->new();
     $ua->agent('perl-Net-Geohash/' . $VERSION );
     $ua->max_redirect(0);
@@ -35,7 +36,7 @@ Net::Geohash - The great new Net::Geohash!
 
 =head1 VERSION
 
-Version 1.0
+Version 1.1
 
 =head1 SYNOPSIS
 
@@ -59,6 +60,8 @@ geohash.org for hashing. It returns the fully qualified geohash.org url
 on success. If an error occurs it will give a warning message and return
 an empty string.
 
+Location names such as 'Paris, France' can also be given.
+
 =head1 AUTHOR
 
 Nick Gerakines, C<< <nick at gerakines.net> >>
@@ -81,6 +84,16 @@ You can also look for information at:
 
 =over 4
 
+=item * geohash.org
+
+L<http://geohash.org/>
+
+=item * del.icio.us/tag/geohash
+
+L<http://del.icio.us/tag/geohash>
+
+=over 4
+
 =item * AnnoCPAN: Annotated CPAN documentation
 
 L<http://annocpan.org/dist/Net-Geohash>
@@ -98,8 +111,6 @@ L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Net-Geohash>
 L<http://search.cpan.org/dist/Net-Geohash>
 
 =back
-
-=head1 ACKNOWLEDGEMENTS
 
 =head1 COPYRIGHT & LICENSE
 

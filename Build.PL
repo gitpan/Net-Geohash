@@ -1,5 +1,6 @@
 use strict;
 use warnings;
+
 use Module::Build;
 
 my $builder = Module::Build->new(
@@ -13,6 +14,7 @@ my $builder = Module::Build->new(
     build_requires => {
         'Test::More' => 0,
         'Test::Warn' => 0,
+        'Test::Exception' => 0,
     },
     add_to_cleanup      => [ 'Net-Geohash-*' ],
 );
